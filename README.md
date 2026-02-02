@@ -1,4 +1,4 @@
-# 📚 QuiZify - Interactive Quiz Application
+# 📚 nteractive Quiz Application
 
 A beautiful, feature-rich Flutter quiz application with LaTeX support for mathematical expressions, dynamic JSON-based content management, statistics tracking, and HTML export functionality.
 
@@ -697,3 +697,4 @@ A: Yes! Only sharing requires internet.
 **Happy Quizzing! 🎓✨**
 
 Made with ❤️ using Flutter
+
