@@ -27,23 +27,7 @@ A beautiful, feature-rich Flutter quiz application with LaTeX support for mathem
 - Dart SDK
 - Android Studio / VS Code
 - An Android/iOS device or emulator
-
-### Installation
-
-1. **Clone or extract the project**
-   ```bash
-   cd quiz_app
-   ```
-
-2. **Install dependencies**
-   ```bash
-   flutter pub get
-   ```
-
-3. **Run the app**
-   ```bash
-   flutter run
-   ```
+  
 ---
 ## 📦 Dependencies
 
@@ -59,9 +43,6 @@ dependencies:
   font_awesome_flutter: ^10.12.0  # Icon library
   share_plus: ^12.0.1           # Sharing functionality
 ```
-
-**Note:** All dependencies are already included in `pubspec.yaml`
-
 ---
 
 ## 📁 Project Structure
@@ -94,22 +75,6 @@ quiz_app/
 │   └── mcqs.json                 # ⭐ ALL QUIZ DATA IS HERE
 └── pubspec.yaml
 ```
-
----
-
-## 🎯 How to Add/Modify Quiz Content
-
-### All quiz data is stored in 
-`assets/mcqs.json`
-
-The app **automatically reads** this file and generates the UI. You can:
-- ✅ Add new subjects
-- ✅ Add new subtopics
-- ✅ Add / remove questions
-- ✅ Modify existing content
-
-**No code changes required!** The UI adapts automatically.
-
 ---
 
 ## 📝 JSON Structure
@@ -176,95 +141,6 @@ The JSON file contains an **array of subject objects**.
 | `answer`   | String        | Correct answer (must match one option exactly) | `"$0.5$"`                           |
 
 **Important:** The `answer` field must **exactly match** one of the options.
-
----
-
-## 📐 Using LaTeX in Questions
-
-### Basic Math Syntax
-
-```json
-{
-  "question": "Solve: $x^2 + 5x + 6 = 0$",
-  "options": [
-    "$x = -2, -3$",
-    "$x = 2, 3$",
-    "$x = -1, -6$",
-    "$x = 1, 6$"
-  ],
-  "answer": "$x = -2, -3$"
-}
-```
-
-### Common LaTeX Commands
-
-| Expression    | LaTeX Code          | Display |
-|---------------|---------------------|---------|
-| Fraction      | `$\\frac{a}{b}$`    | a/b     |
-| Exponent      | `$x^2$`             | x²      |
-| Square Root   | `$\\sqrt{x}$`       | √x      |
-| Subscript     | `$x_1$`             | x₁      |
-| Greek Letters | `$\\alpha, \\beta$` | α, β    |
-| Sum           | `$\\sum_{i=1}^{n}$` | Σ       |
-| Integral      | `$\\int_0^1 x dx$`  | ∫       |
-
-**Note:** Always escape backslashes in JSON: `\\frac` not `\frac`
-
----
-
-## 🔄 Adding New Content - Step by Step
-
-### Example: Adding a New Subject
-
-1. **Open** `assets/mcqs.json`
-
-2. **Add a new object** to the root array:
-
-```json
-[
-  {
-    "name": "Chemistry",
-    "mcqs": 50,
-    "subtopics": [
-      {
-        "name": "Periodic Table",
-        "mcqs": 25,
-        "questions": [
-          {
-            "question": "What is the chemical symbol for Gold?",
-            "options": ["Au", "Ag", "Go", "Gd"],
-            "answer": "Au"
-          },
-          {
-            "question": "How many elements are in the periodic table?",
-            "options": ["118", "108", "92", "100"],
-            "answer": "118"
-          }
-        ]
-      },
-      {
-        "name": "Chemical Reactions",
-        "mcqs": 25,
-        "questions": [
-          {
-            "question": "What is the product of $2H_2 + O_2$?",
-            "options": ["$2H_2O$", "$H_2O_2$", "$HO_2$", "$H_2O$"],
-            "answer": "$2H_2O$"
-          }
-        ]
-      }
-    ]
-  }
-]
-```
-
-3. **Update MCQ counts:**
-    - Subject `mcqs` = sum of all subtopic `mcqs`
-    - Subtopic `mcqs` = number of questions in that subtopic
-
-4. **Save the file**
-
-5. **Restart the app** - Your new subject appears automatically! ✨
 
 ---
 
@@ -392,121 +268,6 @@ The shared HTML file opens perfectly in any web browser and displays all LaTeX e
 
 ---
 
-## 🎨 Customization
-
-### Changing Subject Colors
-
-Colors are **auto-generated** from the subject name for consistency. The app uses a color mapping system.
-
-To customize, edit the color generation logic in `lib/themes/app_theme.dart`:
-
-```dart
-Color get color {
-  switch (name.toLowerCase()) {
-    case 'mathematics':
-      return Colors.blue;
-    case 'english':
-      return Colors.orange;
-    case 'physics':
-      return Colors.purple;
-    // Add your custom colors here
-    default:
-      return Colors.teal;
-  }
-}
-```
-
-### Changing App Name
-
-1. **Android:** `android/app/src/main/AndroidManifest.xml`
-   ```xml
-   <application android:label="YourAppName">
-   ```
-
-2. **iOS:** `ios/Runner/Info.plist`
-   ```xml
-   <key>CFBundleName</key>
-   <string>YourAppName</string>
-   ```
-
----
-
-## ⚠️ Important Notes
-
-### JSON Validation Rules
-
-1. **Always validate** your JSON: [JSONLint](https://jsonlint.com)
-2. **Array Structure:** Root must be an array `[ {...} ]`
-3. **MCQ Counts:** Must match actual number of questions
-4. **Answer Matching:** `answer` must **exactly** match one option
-5. **LaTeX Escaping:** Use `\\` for backslashes in JSON
-
-### Common Mistakes to Avoid
-
-❌ **Wrong:**
-```json
-"answer": "x = 5"  // Option is "$x = 5$"
-```
-
-✅ **Correct:**
-```json
-"answer": "$x = 5$"  // Exact match with option
-```
-
-❌ **Wrong:**
-```json
-"question": "Solve $\frac{1}{2}$"  // Single backslash
-```
-
-✅ **Correct:**
-```json
-"question": "Solve $\\frac{1}{2}$"  // Escaped backslash
-```
-
-### Best Practices
-
-1. ✅ Test LaTeX syntax before adding to JSON
-2. ✅ Keep backup of working JSON file
-3. ✅ Add questions gradually and test often
-4. ✅ Use consistent formatting
-5. ✅ Validate JSON after every edit
-
----
-
-## 🐛 Troubleshooting
-
-### App doesn't show new content
-- **Hot reload doesn't work for JSON changes**
-- Completely **stop and restart** the app
-- Check JSON syntax at [JSONLint](https://jsonlint.com)
-- Ensure `assets/mcqs.json` is listed in `pubspec.yaml`
-
-### LaTeX not rendering
-- Check backslash escaping: use `\\frac` not `\frac`
-- Verify LaTeX syntax at [LaTeX Editor](https://latexeditor.lagrida.com)
-- Ensure dollar signs are present: `$...$`
-- Check for special characters that need escaping
-
-### Share button not working
-- Test on a **real device** (may not work on emulators)
-- Check app permissions on Android/iOS
-- Ensure `share_plus` package is installed
-- Verify internet connection for HTML sharing
-
-### Statistics not saving
-- Check if `shared_preferences` is installed
-- Ensure app has storage permissions
-- Try clearing app data and restarting
-- Check device storage availability
-
-### Dark mode not working
-- Ensure system dark mode is enabled
-- Restart the app after changing system theme
-- Check `theme_provider.dart` is properly configured
-- Verify `provider` package is installed
-
----
-
 ## 📱 Screens Overview
 
 ### 1. Home Screen (Quiz Zone)
@@ -542,34 +303,6 @@ Color get color {
 - **Tap** to review that quiz
 - **Long press** to delete that attempt
 - Empty state if no history
-
----
-
-## 💡 Pro Tips
-
-### For Quiz Creators:
-
-1. **Start Small:** Begin with 10 questions per topic
-2. **Test Often:** Restart app after each JSON change
-3. **Backup First:** Keep a copy before major edits
-4. **LaTeX Preview:** Test formulas in online editor first
-5. **Consistent Format:** Follow the same pattern for all subjects
-
-### For Students:
-
-1. **Track Progress:** Use Statistics to monitor improvement
-2. **Review Mistakes:** Tap on past quizzes to learn from errors
-3. **Share Results:** Export and share with study groups
-4. **Dark Mode:** Use at night to reduce eye strain
-5. **Clean History:** Long press to delete practice attempts
-
-### For Developers:
-
-1. **State Management:** App uses Provider pattern
-2. **Local Storage:** SharedPreferences for persistence
-3. **Theme System:** Adaptive colors for dark/light modes
-4. **JSON Parsing:** Dynamic model generation
-5. **Error Handling:** Graceful fallbacks for invalid data
 
 ---
 
@@ -659,16 +392,6 @@ Here's a full example of adding a "Chemistry" subject:
 
 ---
 
-## 🚀 Performance Tips
-
-1. **Optimize JSON:** Don't exceed 500 questions per subject
-2. **LaTeX Rendering:** Complex formulas may load slower
-3. **Image Assets:** Keep images optimized if added
-4. **History Limit:** Consider limiting statistics to last 100 attempts
-5. **Regular Cleanup:** Use long press to delete old quiz attempts
-
----
-
 ## 📞 Support & Resources
 
 ### Helpful Links:
@@ -678,24 +401,11 @@ Here's a full example of adding a "Chemistry" subject:
 - [Material Icons](https://fonts.google.com/icons)
 - [Color Picker](https://htmlcolorcodes.com/)
 
-### Common Questions:
-
-**Q: Can I add images to questions?**
-A: Currently text and LaTeX only. Images require code changes.
-
-**Q: What's the maximum number of questions?**
-A: No hard limit, but 1000+ questions may slow down the app.
-
-**Q: Can I export statistics?**
-A: Currently no, but you can share individual quiz results.
-
-**Q: Does it work offline?**
-A: Yes! Only sharing requires internet.
-
 ---
 
 **Happy Quizzing! 🎓✨**
 
 Made with ❤️ using Flutter
+
 
 
