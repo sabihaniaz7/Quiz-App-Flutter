@@ -6,16 +6,18 @@ A beautiful, feature-rich Flutter quiz application with LaTeX support for mathem
 
 ## ✨ Features
 
-- 🎨 **Beautiful Material Design UI** with gradient themes
+- 🎨 **Beautiful Material Design UI** with glassmorphism effects
 - 📐 **LaTeX Support** for mathematical equations and formulas
 - 🌓 **Dark/Light Mode** - Toggle between themes seamlessly
 - 📊 **Statistics Dashboard** - Track your quiz history and performance
 - 📈 **Detailed Review Screen** with correct/wrong answers highlighted
-- 🔄 **Dynamic Content** - Add subjects, topics, and questions without changing code
-- 📤 **HTML Export** - Share quiz results with fully rendered LaTeX
+- 🔄 **Dynamic Content** - Add subjects, topics, and questions via JSON
+- 📤 **HTML Export & Download** - Share or Save quiz results with fully rendered LaTeX
 - 🎯 **Score Tracking** with percentage calculations
+- ⏱️ **Timer Tracking** - See how long each quiz takes
+- ✨ **Animated Transitions** - Smooth UI flows between questions
 - 🗑️ **History Management** - Long press to delete quiz attempts
-- 💾 **Persistent Storage** - Quiz history saved locally
+- 💾 **Persistent Storage** - History and theme settings saved locally
 
 ---
 
@@ -31,6 +33,10 @@ A beautiful, feature-rich Flutter quiz application with LaTeX support for mathem
 ---
 ## 📦 Dependencies
 
+Following dependencies are used in the project:
+
+`pubspec.yaml`
+
 ```yaml
 dependencies:
   flutter:
@@ -42,23 +48,27 @@ dependencies:
   intl: ^0.20.2                 # Date/time formatting
   font_awesome_flutter: ^10.12.0  # Icon library
   share_plus: ^12.0.1           # Sharing functionality
+  open_file: ^3.5.11            # Open file functionality
 ```
+
+**Note:** All dependencies versions may vary. Check the latest versions on [pub.dev](https://pub.dev)
 ---
 
 ## 📁 Project Structure
 
 ```
+```text
 quiz_app/
 ├── lib/
 │   ├── Models/
 │   │   ├── subject.dart           # Subject model
 │   │   ├── subtopics.dart         # SubTopic and Question models
-│   │   └── questions.dart         # Question model
-|   |   |__ quiz_data_service.dart # Manage and retrieve quiz data throughout the application
-|   |   |__ quiz_history.dart      # Quiz History Model
+│   │   ├── questions.dart         # Question model
+│   │   ├── quiz_data_service.dart # Singleton service for data management
+│   │   └── quiz_history.dart      # Quiz history and record management
 │   ├── Providers/
-│   │   └── statistics_provider.dart   # Manage the state of quiz statistics and history
-│   │   └── theme_provider.dart        # Dark/Light theme management
+│   │   ├── statistics_provider.dart   # Manage quiz history and aggregate stats
+│   │   └── theme_provider.dart        # Dynamic light/dark theme state
 │   ├── Screens/
 |   │   ├── home_screen.dart          # Main subjects screen
 |   │   ├── sub_topic_screen.dart     # Topics list screen
@@ -68,12 +78,13 @@ quiz_app/
 │   ├── theme/
 │   │   └── app_theme.dart        # managing application-wide themes and colors
 │   ├── Widgets/
-│   │   └── bottom_nav_bar.dart   # manages navigation between Statistics and Home Screen
-│   │   └── dailogs.dart          #  for displaying custom styled alerts
-│   └── main.dart                 # App entry point
+│   │   ├── bottom_nav_bar.dart   # Adaptive navigation system
+│   │   ├── common_widgets.dart   # Reusable UI (GlassContainer, ScreenHeader)
+│   │   └── dialogs.dart          # Custom styled alerts and modals
+│   └── main.dart                 # App initialization & provider setup
 ├── assets/
-│   └── mcqs.json                 # ⭐ ALL QUIZ DATA IS HERE
-└── pubspec.yaml
+│   └── mcqs.json                 # ⭐ Central Database for all quiz content
+└── pubspec.yaml                  # Manages application dependencies
 ```
 ---
 
@@ -151,6 +162,7 @@ The JSON file contains an **array of subject objects**.
 The **Statistics** screen shows your complete quiz history with:
 
 - 📅 **Date & Time** of each quiz attempt
+- ⏱️ **Time** taken to complete the quiz
 - 📚 **Subject & Topic** taken
 - 🎯 **Score** with percentage
 - ✅ **Total Questions** attempted
@@ -183,15 +195,6 @@ The **Statistics** screen shows your complete quiz history with:
 - 🗑️ **Easy Management** - Long press to delete unwanted records
 - 🎨 **Color-Coded** - Visual indicators for performance levels
 ---
-## 🌓 Dark Mode
-
-### How to Toggle:
-
-The app supports **system-wide dark mode**. To change themes:
-
-- Look for a theme toggle icon in the app bar
-- Tap to switch between light and dark modes
-- Your preference is saved automatically
 
 ### Theme Features:
 
@@ -210,9 +213,9 @@ The app uses Flutter's `provider` package for state management:
 
 ---
 
-## 📤 Sharing Quiz Results
+## Sharing & Downloading Quiz Results
 
-Users can share their quiz results as an **HTML file** with:
+Users can **share** or **download** their quiz results as an **HTML file** with:
 
 - ✅ Fully rendered LaTeX formulas
 - ✅ Color-coded correct/wrong answers
@@ -220,16 +223,14 @@ Users can share their quiz results as an **HTML file** with:
 - ✅ Subject and topic information
 - ✅ Printable format
 
-### How to Share:
+### How to Share
 
 1. Complete a quiz
-2. View the **Review Answers**
-3. Tap the **Share** button (top right)
-4. Choose sharing method:
-    - WhatsApp
-    - Email
-    - Messenger
-    - Any sharing app
+2. View the **Review Answers** or by tapping on the **Statistics** card
+3. Tap the **Share / Download** button (top right)
+4. Choose an action:
+    - **Share:** WhatsApp, Email, Messenger, etc.
+    - **Download:** Save to device storage (Downloads folder)
 
 The shared HTML file opens perfectly in any web browser and displays all LaTeX equations beautifully!
 
@@ -257,7 +258,7 @@ The shared HTML file opens perfectly in any web browser and displays all LaTeX e
 │ Result Screen   │ ← See your score and percentage
 └────────┬────────┘
          │
-         ├─────────► Review Screen → Share as HTML
+         ├─────────► Review Screen → Share & Download as HTML
          │
 ┌─────────────────┐
 │Statistics Screen|  ← See your All attempt quizzes Statistics
@@ -303,23 +304,6 @@ The shared HTML file opens perfectly in any web browser and displays all LaTeX e
 - **Tap** to review that quiz
 - **Long press** to delete that attempt
 - Empty state if no history
-
----
-
-## 🎉 Quick Start Checklist
-
-- [ ] Install Flutter and dependencies
-- [ ] Run `flutter pub get`
-- [ ] Test the app with existing data
-- [ ] Take a sample quiz to see Statistics
-- [ ] Open `assets/mcqs.json`
-- [ ] Add your own subject/questions
-- [ ] Test LaTeX rendering
-- [ ] Restart the app completely
-- [ ] Try dark mode toggle
-- [ ] Share your first quiz result!
-- [ ] Review past quizzes in Statistics
-- [ ] Test long press to delete
 
 ---
 
@@ -406,6 +390,7 @@ Here's a full example of adding a "Chemistry" subject:
 **Happy Quizzing! 🎓✨**
 
 Made with ❤️ using Flutter
+
 
 
 
