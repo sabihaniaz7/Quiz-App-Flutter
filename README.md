@@ -169,6 +169,11 @@ quiz_app/
 
 ## 📝 JSON Structure
 
+> [!IMPORTANT]
+> All MCQs are stored **manually** in the `assets/mcqs.json` file.
+> The UI **automatically updates** based on whatever subjects, topics, questions, and options you add to this file — no code changes required.
+> Simply edit `mcqs.json`, save, and the app reflects your changes instantly.
+
 ### Format
 
 ```json
@@ -231,6 +236,65 @@ The JSON file contains an **array of subject objects**.
 | `answer`   | String        | Correct answer (must match one option exactly) | `"$0.5$"`                           |
 
 **Important:** The `answer` field must **exactly match** one of the options.
+
+---
+
+## 📈 Example: Complete Subject Addition
+
+Here's a full example of adding a "Chemistry" subject:
+
+```json
+[
+  {
+    "name": "Chemistry",
+    "mcqs": 50,
+    "subtopics": [
+      {
+        "name": "Periodic Table",
+        "mcqs": 25,
+        "questions": [
+          {
+            "question": "What is the atomic number of Carbon?",
+            "options": ["6", "12", "14", "8"],
+            "answer": "6"
+          },
+          {
+            "question": "Which element has the symbol $Fe$?",
+            "options": ["Iron", "Fluorine", "Fermium", "Flerovium"],
+            "answer": "Iron"
+          },
+          {
+            "question": "What is $H_2O$ commonly known as?",
+            "options": ["Water", "Hydrogen Peroxide", "Heavy Water", "Hydroxy"],
+            "answer": "Water"
+          }
+          // Add 22 more questions to reach mcqs: 25
+        ]
+      },
+      {
+        "name": "Chemical Reactions",
+        "mcqs": 25,
+        "questions": [
+          {
+            "question": "Balance: $H_2 + O_2 \\rightarrow H_2O$",
+            "options": [
+              "$2H_2 + O_2 \\rightarrow 2H_2O$",
+              "$H_2 + O_2 \\rightarrow H_2O$",
+              "$H_2 + 2O_2 \\rightarrow 2H_2O$",
+              "$4H_2 + 2O_2 \\rightarrow 4H_2O$"
+            ],
+            "answer": "$2H_2 + O_2 \\rightarrow 2H_2O$"
+          }
+          // Add 24 more questions
+        ]
+      }
+    ]
+  }
+  // Keep existing subjects (Math, English, etc.)
+]
+```
+
+**Remember:** Total `mcqs` in subject = sum of all subtopic `mcqs`
 
 ---
 
@@ -397,65 +461,6 @@ The shared HTML file opens perfectly in any web browser and displays all LaTeX e
          |─────────► Tap: Review answers  
          |─────────► Hold: Delete attempt
 ```
-
----
-
-## 📈 Example: Complete Subject Addition
-
-Here's a full example of adding a "Chemistry" subject:
-
-```json
-[
-  {
-    "name": "Chemistry",
-    "mcqs": 50,
-    "subtopics": [
-      {
-        "name": "Periodic Table",
-        "mcqs": 25,
-        "questions": [
-          {
-            "question": "What is the atomic number of Carbon?",
-            "options": ["6", "12", "14", "8"],
-            "answer": "6"
-          },
-          {
-            "question": "Which element has the symbol $Fe$?",
-            "options": ["Iron", "Fluorine", "Fermium", "Flerovium"],
-            "answer": "Iron"
-          },
-          {
-            "question": "What is $H_2O$ commonly known as?",
-            "options": ["Water", "Hydrogen Peroxide", "Heavy Water", "Hydroxy"],
-            "answer": "Water"
-          }
-          // Add 22 more questions to reach mcqs: 25
-        ]
-      },
-      {
-        "name": "Chemical Reactions",
-        "mcqs": 25,
-        "questions": [
-          {
-            "question": "Balance: $H_2 + O_2 \\rightarrow H_2O$",
-            "options": [
-              "$2H_2 + O_2 \\rightarrow 2H_2O$",
-              "$H_2 + O_2 \\rightarrow H_2O$",
-              "$H_2 + 2O_2 \\rightarrow 2H_2O$",
-              "$4H_2 + 2O_2 \\rightarrow 4H_2O$"
-            ],
-            "answer": "$2H_2 + O_2 \\rightarrow 2H_2O$"
-          }
-          // Add 24 more questions
-        ]
-      }
-    ]
-  }
-  // Keep existing subjects (Math, English, etc.)
-]
-```
-
-**Remember:** Total `mcqs` in subject = sum of all subtopic `mcqs`
 
 ---
 
