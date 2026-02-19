@@ -431,39 +431,6 @@ The shared HTML file opens perfectly in any web browser and displays all LaTeX e
 
 ---
 
-## 🎓 Complete App Flow
-
-```text
-┌─────────────────┐
-│   Home Screen   │ ← Select Subject (Math, English, etc.)
-└────────┬────────┘
-         │
-         ▼
-┌─────────────────┐
-│ Topic Selection │ ← Choose Subtopic (Algebra, Vocabulary, etc.)
-└────────┬────────┘
-         │
-         ▼
-┌─────────────────┐
-│  Quiz Screen    │ ← Answer questions one by one
-└────────┬────────┘
-         │
-         ▼
-┌─────────────────┐
-│ Result Screen   │ ← See your score and percentage
-└────────┬────────┘
-         │
-         ├─────────► Review Screen → Share & Download as HTML
-         │
-┌─────────────────┐
-│Statistics Screen|  ← See your All attempt quizzes Statistics
-└────────┬────────┘             
-         |─────────► Tap: Review answers  
-         |─────────► Hold: Delete attempt
-```
-
----
-
 ## 🔐 Data Privacy
 
 - ✅ All quiz data stored **locally** on device
