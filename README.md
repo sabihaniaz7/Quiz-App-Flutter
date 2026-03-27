@@ -1,6 +1,6 @@
 <!-- markdownlint-disable MD033 -->
 
-# 📚 Quiz Application
+# Quiz Application
 
 A beautiful, feature-rich Flutter quiz application with LaTeX support for mathematical expressions, dynamic JSON-based content management, statistics tracking, and HTML export functionality.
 
@@ -15,7 +15,7 @@ A beautiful, feature-rich Flutter quiz application with LaTeX support for mathem
 
 ---
 
-## 📸 Preview
+## Preview
 
 | Light Mode | Dark Mode |
 | :---: | :---: |
@@ -32,7 +32,7 @@ A beautiful, feature-rich Flutter quiz application with LaTeX support for mathem
 
 ---
 
-## 📱 Screens Overview
+## Screens Overview
 
 ### 1. Home Screen (Quiz Zone)
 
@@ -47,7 +47,7 @@ A beautiful, feature-rich Flutter quiz application with LaTeX support for mathem
 
 - One question at a time
 - Progress indicator (1/10, 2/10, etc.)
-- Next button after selecting answer
+- Next button after selecting the answer
 
 ### 4. Result Screen
 
@@ -81,24 +81,24 @@ A beautiful, feature-rich Flutter quiz application with LaTeX support for mathem
 
 ---
 
-## ✨ Features
+## Features
 
-- 🎨 **Beautiful Material Design UI** with glassmorphism effects
-- 📐 **LaTeX Support** for mathematical equations and formulas
-- 🌓 **Dark/Light Mode** - Toggle between themes seamlessly
-- 📊 **Statistics Dashboard** - Track your quiz history and performance
-- 📈 **Detailed Review Screen** with correct/wrong answers highlighted
-- 🔄 **Dynamic Content** - Add subjects, topics, and questions via JSON
-- 📤 **HTML Export & Download** - Share or Save quiz results with fully rendered LaTeX
-- 🎯 **Score Tracking** with percentage calculations
-- ⏱️ **Timer Tracking** - See how long each quiz takes
-- ✨ **Animated Transitions** - Smooth UI flows between questions
-- 🗑️ **History Management** - Long press to delete quiz attempts
-- 💾 **Persistent Storage** - History and theme settings saved locally
+- **Beautiful Material Design UI** with glassmorphism effects
+- **LaTeX Support** for mathematical equations and formulas
+- **Dark/Light Mode** - Toggle between themes seamlessly
+- **Statistics Dashboard** - Track your quiz history and performance
+- **Detailed Review Screen** with correct/wrong answers highlighted
+- **Dynamic Content** - Add subjects, topics, and questions via JSON
+- **HTML Export & Download** - Share or Save quiz results with fully rendered LaTeX
+- **Score Tracking** with percentage calculations
+- **Timer Tracking** - See how long each quiz takes
+- **Animated Transitions** - Smooth UI flows between questions
+- **History Management** - Long-press to delete quiz attempts
+- **Persistent Storage** - History and theme settings saved locally
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 
@@ -109,9 +109,9 @@ A beautiful, feature-rich Flutter quiz application with LaTeX support for mathem
   
 ---
 
-## 📦 Dependencies
+## Dependencies
 
-Following dependencies are used in the project:
+The following dependencies are used in the project:
 
 `pubspec.yaml`
 
@@ -129,11 +129,11 @@ dependencies:
   open_file: ^3.5.11            # Open file functionality
 ```
 
-**Note:** All dependencies versions may vary. Check the latest versions on [pub.dev](https://pub.dev)
+**Note:** All dependency versions may vary. Check the latest versions on [pub.dev](https://pub.dev)
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```text
 quiz_app/
@@ -161,13 +161,13 @@ quiz_app/
 │   │   └── dialogs.dart          # Custom styled alerts and modals
 │   └── main.dart                 # App initialization & provider setup
 ├── assets/
-│   └── mcqs.json                 # ⭐ Central Database for all quiz content
+│   └── mcqs.json                 # Central Database for all quiz content
 └── pubspec.yaml                  # Manages application dependencies
 ```
 
 ---
 
-## 📝 JSON Structure
+## JSON Structure
 
 > [!IMPORTANT]
 > All MCQs are stored **manually** in the `assets/mcqs.json` file.
@@ -205,7 +205,7 @@ quiz_app/
 
 ---
 
-## 🔧 Field Descriptions
+## Field Descriptions
 
 ### Root Array Structure
 
@@ -239,7 +239,7 @@ The JSON file contains an **array of subject objects**.
 
 ---
 
-## 📈 Example: Complete Subject Addition
+## Example: Complete Subject Addition
 
 Here's a full example of adding a "Chemistry" subject:
 
@@ -298,18 +298,18 @@ Here's a full example of adding a "Chemistry" subject:
 
 ---
 
-## 📊 Statistics Screen
+## Statistics Screen
 
 ### Features
 
 The **Statistics** screen shows your complete quiz history with:
 
-- 📅 **Date & Time** of each quiz attempt
-- ⏱️ **Time** taken to complete the quiz
-- 📚 **Subject & Topic** taken
-- 🎯 **Score** with percentage
-- ✅ **Total Questions** attempted
-- 🏆 **Performance** color-coded (Green = Correct, Red = Wrong)
+- **Date & Time** of each quiz attempt
+- **Time** taken to complete the quiz
+- **Subject & Topic** taken
+- **Score** with percentage
+- **Total Questions** attempted
+- **Performance** color-coded (Green = Correct, Red = Wrong)
 
 ### How to Use
 
@@ -332,15 +332,15 @@ The **Statistics** screen shows your complete quiz history with:
 
 ### Statistics Features
 
-- ✅ **Persistent Storage** - History saved even after closing the app
-- 📈 **Performance Tracking** - Monitor your progress over time
-- 🔍 **Detailed Review** - Click to see complete answer breakdown
-- 🗑️ **Easy Management** - Long press to delete unwanted records
-- 🎨 **Color-Coded** - Visual indicators for performance levels
+- **Persistent Storage** - History saved even after closing the app
+- **Performance Tracking** - Monitor your progress over time
+- **Detailed Review** - Click to see complete answer breakdown
+- **Easy Management** - Long-press to delete unwanted records
+- **Color-Coded** - Visual indicators for performance levels
 
 ---
 
-## 🎨 Colors & Typography
+## Colors & Typography
 
 ### Font
 
@@ -392,11 +392,11 @@ The app uses **`monospace`** as the font family (applied globally via `app_theme
 
 ### Theme Features
 
-- 🌞 **Light Mode:** Bright, clean interface with vibrant colors
-- 🌙 **Dark Mode:** Easy on the eyes with dark backgrounds
-- 🎨 **Adaptive Colors:** Subject colors adapt to theme
-- 💾 **Persistent:** Your theme choice is remembered
-- ⚡ **Smooth Transition:** Seamless switching between modes
+- **Light Mode:** Bright, clean interface with vibrant colors
+- **Dark Mode:** Easy on the eyes with dark backgrounds
+- **Adaptive Colors:** Subject colors adapt to theme
+- **Persistent:** Your theme choice is remembered
+- **Smooth Transition:** Seamless switching between modes
 
 ### Theme Provider
 
@@ -412,11 +412,11 @@ The app uses Flutter's `provider` package for state management:
 
 Users can **share** or **download** their quiz results as an **HTML file** with:
 
-- ✅ Fully rendered LaTeX formulas
-- ✅ Color-coded correct/wrong answers
-- ✅ Complete score summary
-- ✅ Subject and topic information
-- ✅ Printable format
+- Fully rendered LaTeX formulas
+- Color-coded correct/wrong answers
+- Complete score summary
+- Subject and topic information
+- Printable format
 
 ### How to Share
 
@@ -431,17 +431,17 @@ The shared HTML file opens perfectly in any web browser and displays all LaTeX e
 
 ---
 
-## 🔐 Data Privacy
+## Data Privacy
 
-- ✅ All quiz data stored **locally** on device
-- ✅ No internet connection required for quizzes
-- ✅ Statistics saved in app's private storage
-- ✅ Shared HTML files contain only quiz results
-- ✅ No personal information collected
+- All quiz data stored **locally** on device
+- No internet connection required for quizzes
+- Statistics saved in app's private storage
+- Shared HTML files contain only quiz results
+- No personal information collected
 
 ---
 
-## 📞 Support & Resources
+## Support & Resources
 
 ### Helpful Links
 
@@ -453,6 +453,6 @@ The shared HTML file opens perfectly in any web browser and displays all LaTeX e
 
 ---
 
-### Happy Quizzing! 🎓✨**
+### Happy Quizzing!
 
 Made with ❤️ using Flutter
